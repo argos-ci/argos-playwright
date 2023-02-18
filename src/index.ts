@@ -36,17 +36,8 @@ function waitForFontLoading() {
 }
 
 // Check if the images are loaded
-async function waitForImagesLoading() {
-  return Promise.all(
-    Array.from(document.images)
-      .filter((img) => !img.complete)
-      .map(
-        (img) =>
-          new Promise((resolve) => {
-            img.onload = img.onerror = resolve;
-          })
-      )
-  );
+function waitForImagesLoading() {
+  return Array.from(document.images).every((img) => img.complete);
 }
 
 type LocatorOptions = Parameters<Page["locator"]>[1];
