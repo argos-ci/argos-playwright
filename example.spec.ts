@@ -1,13 +1,15 @@
-import { test, chromium, expect } from "@playwright/test";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { test, chromium, expect, Page } from "@playwright/test";
 import { fileURLToPath } from "node:url";
 import { stat } from "node:fs/promises";
-import { argosScreenshot } from "./index.js";
-import { argosScreenshot as argosScreenshotCjs } from "./index.cjs";
+import { argosScreenshot } from "./src/index.js";
+// @ts-ignore
+import { argosScreenshot as argosScreenshotCjs } from "./dist/index.cjs";
 
 test.describe.configure({ mode: "serial" });
 const screenshotFolder = "screenshots";
 
-export async function exists(path) {
+export async function exists(path: string) {
   try {
     await stat(path);
     return true;
@@ -16,7 +18,7 @@ export async function exists(path) {
   }
 }
 
-async function screenshotExists(screenshotName) {
+async function screenshotExists(screenshotName: string) {
   const filepath = fileURLToPath(
     new URL(`${screenshotFolder}/${screenshotName}.png`, import.meta.url).href
   );
@@ -25,7 +27,7 @@ async function screenshotExists(screenshotName) {
 
 const url = new URL("fixtures/dummy.html", import.meta.url).href;
 test.describe("#argosScreenshot", () => {
-  let page;
+  let page: Page;
   const screenshotName = "dummy-page";
 
   test.beforeAll(async () => {
@@ -42,7 +44,7 @@ test.describe("#argosScreenshot", () => {
     });
     page.on("console", (msg) => console.log(msg.text()));
     await page.goto(url);
-    await argosScreenshot(page, screenshotName);
+    await argosScreenshot(page, screenshotName, {});
   });
 
   test.afterAll(async () => {
@@ -50,20 +52,25 @@ test.describe("#argosScreenshot", () => {
   });
 
   test("throws without page", async () => {
+    let error: any;
     try {
+      // @ts-expect-error - We want to test the error
       await argosScreenshot();
-    } catch (error) {
-      expect(error.message).toBe("A Playwright `page` object is required.");
+    } catch (e: any) {
+      error = e;
     }
+    expect(error.message).toBe("A Playwright `page` object is required.");
   });
 
   test("throws without name", async () => {
-    expect.assertions(1);
+    let error: any;
     try {
+      // @ts-expect-error - We want to test the error
       await argosScreenshot(page);
-    } catch (error) {
-      expect(error.message).toBe("The `name` argument is required.");
+    } catch (e: any) {
+      error = e;
     }
+    expect(error.message).toBe("The `name` argument is required.");
   });
 
   test("waits for loader hiding", async () => {
