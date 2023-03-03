@@ -37,7 +37,9 @@ function waitForFontLoading() {
 
 // Check if the images are loaded
 function waitForImagesLoading() {
-  return Array.from(document.images).every((img) => img.complete);
+    const allImages = Array.from(document.images);
+    allImages.forEach(img => img.loading = "eager")
+    return allImages.every((img)=>img.complete);
 }
 
 type LocatorOptions = Parameters<Page["locator"]>[1];
