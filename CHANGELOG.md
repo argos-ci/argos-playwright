@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/argos-ci/argos-playwright/compare/v0.0.3...v0.0.4) (2023-03-03)
+
+
+### Bug Fixes
+
+* waiting for lazy-loaded images always timeouts ([e3a9bf3](https://github.com/argos-ci/argos-playwright/commit/e3a9bf363609ab0715a2bbd9ab7927de3f513f55))
+
 ### [0.0.3](https://github.com/argos-ci/argos-playwright/compare/v0.0.2...v0.0.3) (2023-03-03)
 
 
