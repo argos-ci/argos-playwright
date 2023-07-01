@@ -17,4 +17,4 @@ Visit [argos-ci.com/docs/playwright](https://argos-ci.com/docs/playwright) for g
 ## Links
 
 - [Official SDK Docs](https://argos-ci.com/docs/)
-- [Discord](https://discord.gg/WjzGrQGS4A)
+- [Discord](https://argos-ci.com/discord)
