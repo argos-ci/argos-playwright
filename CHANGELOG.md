@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/argos-ci/argos-playwright/compare/v0.0.4...v0.0.5) (2023-07-12)
+
+
+### Features
+
+* update old doc link ([de9c2db](https://github.com/argos-ci/argos-playwright/commit/de9c2dbde59ff3382281145d48198c0ea7da4871))
+
+
+### Bug Fixes
+
+* wait aria-busy before images & fonts ([#9](https://github.com/argos-ci/argos-playwright/issues/9)) ([dd1a2dd](https://github.com/argos-ci/argos-playwright/commit/dd1a2ddec4d8137187c3ac7a529c235c2e0b0a49))
+
 ### [0.0.4](https://github.com/argos-ci/argos-playwright/compare/v0.0.3...v0.0.4) (2023-03-03)
 
 
