@@ -39,6 +39,7 @@
     "format": "prettier --write . --ignore-path .gitignore",
     "check-format": "prettier --check .",
     "lint": "eslint --ignore-path .gitignore .",
+    "prepublishOnly": "npm run build",
     "release": "standard-version && conventional-github-releaser --preset angular"
   },
   "devDependencies": {
