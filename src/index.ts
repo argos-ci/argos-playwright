@@ -37,9 +37,9 @@ function waitForFontLoading() {
 
 // Check if the images are loaded
 function waitForImagesLoading() {
-    const allImages = Array.from(document.images);
-    allImages.forEach(img => img.loading = "eager")
-    return allImages.every((img)=>img.complete);
+  const allImages = Array.from(document.images);
+  allImages.forEach((img) => (img.loading = "eager"));
+  return allImages.every((img) => img.complete);
 }
 
 type LocatorOptions = Parameters<Page["locator"]>[1];
@@ -72,9 +72,14 @@ export async function argosScreenshot(
 
   mkdir(screenshotFolder, { recursive: true });
 
+  // Inject global styles
+  await page.addStyleTag({ content: GLOBAL_STYLES });
+
+  // Wait for all busy elements to be loaded
+  await page.waitForSelector('[aria-busy="true"]', { state: "hidden" });
+
+  // Wait for all images and fonts to be loaded
   await Promise.all([
-    page.addStyleTag({ content: GLOBAL_STYLES }),
-    page.waitForSelector('[aria-busy="true"]', { state: "hidden" }),
     page.waitForFunction(waitForImagesLoading),
     page.waitForFunction(waitForFontLoading),
   ]);
