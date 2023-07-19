@@ -24,7 +24,7 @@ const GLOBAL_STYLES = `
     font-family: monospace !important;
     opacity: 0 !important;
   }
-  
+
   [data-visual-test="removed"] {
     display: none !important;
   }
@@ -76,7 +76,7 @@ export async function argosScreenshot(
   await page.addStyleTag({ content: GLOBAL_STYLES });
 
   // Wait for all busy elements to be loaded
-  await page.waitForSelector('[aria-busy="true"]', { state: "hidden" });
+  await page.waitForSelector('[aria-busy="true"]', { state: "detached" });
 
   // Wait for all images and fonts to be loaded
   await Promise.all([
