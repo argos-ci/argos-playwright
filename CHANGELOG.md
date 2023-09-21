@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/argos-ci/argos-playwright/compare/v0.0.6...v0.0.7) (2023-09-21)
+
+
+### Features
+
+* disable spellcheck in argosScreenshot ([#12](https://github.com/argos-ci/argos-playwright/issues/12)) ([c09e518](https://github.com/argos-ci/argos-playwright/commit/c09e518050e09841d9b74bafb778eff80fde3668))
+
 ### [0.0.6](https://github.com/argos-ci/argos-playwright/compare/v0.0.5...v0.0.6) (2023-07-12)
 
 ### [0.0.5](https://github.com/argos-ci/argos-playwright/compare/v0.0.4...v0.0.5) (2023-07-12)
