@@ -24,7 +24,7 @@ const GLOBAL_STYLES = `
     font-family: monospace !important;
     opacity: 0 !important;
   }
-  
+
   [data-visual-test="removed"] {
     display: none !important;
   }
@@ -40,6 +40,15 @@ function waitForImagesLoading() {
   const allImages = Array.from(document.images);
   allImages.forEach((img) => (img.loading = "eager"));
   return allImages.every((img) => img.complete);
+}
+
+// Disable spellcheck to avoid red underlines
+function disableSpellCheck() {
+  const query =
+    "[contenteditable]:not([contenteditable=false]):not([spellcheck=false]), input:not([spellcheck=false]), textarea:not([spellcheck=false])";
+  const inputs = document.querySelectorAll(query);
+  inputs.forEach((input) => input.setAttribute("spellcheck", "false"));
+  return true;
 }
 
 type LocatorOptions = Parameters<Page["locator"]>[1];
@@ -78,10 +87,11 @@ export async function argosScreenshot(
   // Wait for all busy elements to be loaded
   await page.waitForSelector('[aria-busy="true"]', { state: "hidden" });
 
-  // Wait for all images and fonts to be loaded
+  // Code injection to improve the screenshot stability
   await Promise.all([
     page.waitForFunction(waitForImagesLoading),
     page.waitForFunction(waitForFontLoading),
+    page.waitForFunction(disableSpellCheck),
   ]);
 
   await handle.screenshot({
