@@ -20,7 +20,7 @@ export async function exists(path: string) {
 
 async function screenshotExists(screenshotName: string) {
   const filepath = fileURLToPath(
-    new URL(`${screenshotFolder}/${screenshotName}.png`, import.meta.url).href
+    new URL(`${screenshotFolder}/${screenshotName}.png`, import.meta.url).href,
   );
   return exists(filepath);
 }
@@ -76,7 +76,7 @@ test.describe("#argosScreenshot", () => {
   test("waits for loader hiding", async () => {
     const loaderContainer = await page.$eval(
       "#loader-container",
-      (div) => div.innerHTML
+      (div) => div.innerHTML,
     );
     expect(loaderContainer.trim()).toBe("");
   });
@@ -89,7 +89,7 @@ test.describe("#argosScreenshot", () => {
   test("hides div with data-visual-test='transparent'", async () => {
     const opacityStyle = await page.$eval(
       "div[data-visual-test='transparent']",
-      (div) => getComputedStyle(div).opacity
+      (div) => getComputedStyle(div).opacity,
     );
     expect(opacityStyle).toBe("0");
   });
@@ -97,7 +97,7 @@ test.describe("#argosScreenshot", () => {
   test("removes div with data-visual-test='removed'", async () => {
     const displayStyle = await page.$eval(
       "div[data-visual-test='removed']",
-      (div) => getComputedStyle(div).display
+      (div) => getComputedStyle(div).display,
     );
     expect(displayStyle).toBe("none");
   });

@@ -54,7 +54,7 @@ function disableSpellCheck() {
 type LocatorOptions = Parameters<Page["locator"]>[1];
 
 type ScreenshotOptions<
-  TBase extends PageScreenshotOptions | LocatorScreenshotOptions
+  TBase extends PageScreenshotOptions | LocatorScreenshotOptions,
 > = Omit<TBase, "encoding" | "type" | "omitBackground" | "path">;
 
 export type ArgosScreenshotOptions = {
@@ -69,7 +69,7 @@ export type ArgosScreenshotOptions = {
 export async function argosScreenshot(
   page: Page,
   name: string,
-  { element, has, hasText, ...options }: ArgosScreenshotOptions = {}
+  { element, has, hasText, ...options }: ArgosScreenshotOptions = {},
 ) {
   if (!page) throw new Error("A Playwright `page` object is required.");
   if (!name) throw new Error("The `name` argument is required.");
